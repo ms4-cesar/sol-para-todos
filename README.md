@@ -152,17 +152,17 @@ python app.py
 
 Projeto desenvolvido por alunos da disciplina de Projetos 1.
 
-Bruno Soares
-E-mail: bjsm@cesar.school
+# 👥 Equipe
 
-Diógenes Agra 
-E-mail: daa3@cesar.school
+Projeto desenvolvido por alunos da disciplina de **Projetos 1** da CESAR School.
 
-Mariana da Silva
-E-mail: ms4@cesar.school
+| Integrante | E-mail |
+|---|---|
+| Bruno Soares | bjsm@cesar.school |
+| Diógenes Agra | daa3@cesar.school |
+| Mariana da Silva | ms4@cesar.school |
+| Thiago Felipe | tfss3@cesar.school |
 
-Thiago Felipe
-E-mail: tfss3@cesar.school
 ---
 
 # 📚 Contexto Acadêmico

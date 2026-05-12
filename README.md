@@ -150,10 +150,6 @@ python app.py
 
 # 👥 Equipe
 
-Projeto desenvolvido por alunos da disciplina de Projetos 1.
-
-# 👥 Equipe
-
 Projeto desenvolvido por alunos da disciplina de **Projetos 1** da CESAR School.
 
 | Integrante | E-mail |

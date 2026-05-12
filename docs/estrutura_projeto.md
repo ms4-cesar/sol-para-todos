@@ -45,6 +45,10 @@ Este documento descreve a organização das pastas e arquivos do projeto **Sol p
 │   ├── style.css
 │   └── script.js
 │
+├── /postman
+│   ├── sol_para_todos_collection.json
+│   └── README.md
+│
 └── /docs
     ├── DER.png
     ├── modelo_logico.pdf
@@ -64,11 +68,11 @@ Responsável pelos arquivos relacionados ao banco de dados PostgreSQL.
 Contém os scripts de criação das tabelas, constraints, chaves primárias e chaves estrangeiras.
 
 Exemplos:
-- `CREATE TABLE`
-- `PRIMARY KEY`
-- `FOREIGN KEY`
-- `CHECK`
-- `UNIQUE`
+- CREATE TABLE
+- PRIMARY KEY
+- FOREIGN KEY
+- CHECK
+- UNIQUE
 
 ---
 
@@ -86,8 +90,8 @@ Exemplos:
 Arquivo utilizado para armazenar consultas SQL úteis durante o desenvolvimento.
 
 Exemplos:
-- `SELECT`
-- `JOIN`
+- SELECT;
+- JOIN;
 - consultas analíticas;
 - consultas de validação.
 
@@ -120,7 +124,7 @@ Responsável por:
 Responsável pela conexão com o PostgreSQL.
 
 Exemplos:
-- `psycopg2.connect()`
+- psycopg2.connect();
 - gerenciamento de conexão.
 
 ---
@@ -239,6 +243,49 @@ Interações da interface e comunicação com backend.
 
 ---
 
+# 📂 Pasta `/postman`
+
+Responsável pelos testes da API da aplicação.
+
+## Arquivos
+
+### `sol_para_todos_collection.json`
+
+Collection do Postman contendo:
+- endpoints;
+- testes CRUD;
+- requisições organizadas por entidade.
+
+Exemplos:
+- Usuário;
+- Simulação;
+- Parceiro;
+- Lead.
+
+---
+
+### `README.md`
+
+Documentação dos testes da API.
+
+Pode conter:
+- instruções de importação;
+- exemplos de JSON;
+- descrição dos endpoints;
+- exemplos de respostas da API.
+
+---
+
+## Objetivo
+
+A pasta `/postman` permite:
+- validar o funcionamento da API;
+- testar endpoints sem frontend;
+- facilitar integração entre backend e frontend;
+- padronizar testes entre os integrantes do grupo.
+
+---
+
 # 📂 Pasta `/docs`
 
 Armazena toda documentação do projeto.
@@ -301,9 +348,9 @@ bcrypt
 Define arquivos e pastas que não devem ser enviados ao GitHub.
 
 Exemplos:
-- `venv/`
-- `__pycache__/`
-- `.env`
+- venv/;
+- __pycache__/;
+- .env.
 
 ---
 

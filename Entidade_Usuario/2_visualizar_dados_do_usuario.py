@@ -1,16 +1,25 @@
-
 import psycopg2
+
+from dotenv import load_dotenv
+import os
+import psycopg2
+
+
+# Carrega variáveis do .env
+load_dotenv()
+
 
 # 1. Configurar conexão com o Banco de Dados
 def get_connection():
     try:
         conn = psycopg2.connect(
-            host="a465612-akamai-prod-5595182-default.g2a.akamaidb.net",
-            port=14312,
-            database="defaultdb",
-            user="akmadmin",
-	    password="SENHA_AQUI"
+            host=os.getenv("DB_HOST"),
+   	        port=os.getenv("DB_PORT"),
+    	    database=os.getenv("DB_NAME"),
+    	    user=os.getenv("DB_USER"),
+   	        password=os.getenv("DB_PASSWORD")
         )
+
         return conn
     except Exception as e:
         return None

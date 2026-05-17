@@ -73,11 +73,11 @@ CREATE TABLE Parceiro (
 
 -- =========================================
 -- TABELA: Endereco_Parceiro
--- Relação 1:1 com Parceiro
+-- Relação 1:N com Parceiro
 -- =========================================
 CREATE TABLE Endereco_Parceiro (
     id_endereco SERIAL PRIMARY KEY,
-    id_parceiro INT NOT NULL UNIQUE REFERENCES Parceiro(id_parceiro) ON DELETE CASCADE,
+    id_parceiro INT NOT NULL REFERENCES Parceiro(id_parceiro) ON DELETE CASCADE,
     rua VARCHAR(150) NOT NULL,
     numero VARCHAR(10) NOT NULL,
     complemento VARCHAR(150),

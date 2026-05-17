@@ -1,6 +1,14 @@
 -- =========================================
--- INSERTS: Usuario
+-- INSERTS COERENTES - SOL PARA TODOS
+-- PostgreSQL
 -- =========================================
+
+-- =========================================
+-- INSERTS: Usuario
+-- Perfis alinhados ao problema do projeto:
+-- baixa renda, área rural, classe média baixa
+-- =========================================
+
 INSERT INTO Usuario (
     nome,
     sobrenome,
@@ -10,13 +18,47 @@ INSERT INTO Usuario (
     renda,
     tipo_moradia
 ) VALUES
-('João', 'Silva', 'joao.silva@email.com', 'senha123', '12345678901', 4500.00, 'Apartamento'),
-('Maria', 'Oliveira', 'maria.oliveira@email.com', 'senha456', '98765432100', 7200.50, 'Casa'),
-('Carlos', 'Souza', 'carlos.souza@email.com', 'senha789', '45678912345', 3200.75, 'Apartamento');
+(
+    'Maria',
+    'Santos',
+    'maria.santos@email.com',
+    'senha123',
+    '12345678901',
+    1800.00,
+    'Casa'
+),
+(
+    'José',
+    'Oliveira',
+    'jose.oliveira@email.com',
+    'senha456',
+    '98765432100',
+    1200.00,
+    'Área rural'
+),
+(
+    'Ana',
+    'Pereira',
+    'ana.pereira@email.com',
+    'senha789',
+    '45678912345',
+    2800.00,
+    'Apartamento'
+),
+(
+    'Carlos',
+    'Lima',
+    'carlos.lima@email.com',
+    'senha321',
+    '32165498700',
+    2200.00,
+    'Casa'
+);
 
 -- =========================================
 -- INSERTS: Endereco_Usuario
 -- =========================================
+
 INSERT INTO Endereco_Usuario (
     id_usuario,
     rua,
@@ -27,39 +69,102 @@ INSERT INTO Endereco_Usuario (
     cidade,
     uf
 ) VALUES
-(1, 'Rua das Flores', '123', 'Apto 12', '01001000', 'Centro', 'São Paulo', 'SP'),
-(2, 'Av Brasil', '456', 'Casa', '22040002', 'Copacabana', 'Rio de Janeiro', 'RJ'),
-(3, 'Rua XV de Novembro', '789', NULL, '80020010', 'Centro', 'Curitiba', 'PR');
+(
+    1,
+    'Rua Nova Esperança',
+    '120',
+    NULL,
+    '50000001',
+    'Ibura',
+    'Recife',
+    'PE'
+),
+(
+    2,
+    'Sítio Boa Vista',
+    'S/N',
+    NULL,
+    '55000002',
+    'Zona Rural',
+    'Caruaru',
+    'PE'
+),
+(
+    3,
+    'Avenida Norte',
+    '450',
+    'Apto 203',
+    '52000003',
+    'Casa Amarela',
+    'Recife',
+    'PE'
+),
+(
+    4,
+    'Rua do Sol',
+    '88',
+    NULL,
+    '53000004',
+    'Peixinhos',
+    'Olinda',
+    'PE'
+);
 
 -- =========================================
 -- INSERTS: Telefone_Usuario
 -- =========================================
+
 INSERT INTO Telefone_Usuario (
     id_usuario,
     ddd,
     numero
 ) VALUES
-(1, '11', '999999999'),
-(1, '11', '988888888'),
-(2, '21', '977777777'),
-(3, '41', '966666666');
+(1, '81', '999111222'),
+(2, '81', '988222333'),
+(3, '81', '977333444'),
+(4, '81', '966444555');
 
 -- =========================================
 -- INSERTS: Simulacao
+-- Simulações com contas compatíveis com baixa/média renda
 -- =========================================
+
 INSERT INTO Simulacao (
     id_usuario,
     consumo_mensal,
     valor_fatura,
     economia_estimada
 ) VALUES
-(1, 350.50, 420.90, 110.25),
-(2, 500.00, 610.30, 180.00),
-(3, 275.80, 330.40, 95.75);
+(
+    1,
+    180.00,
+    165.00,
+    55.00
+),
+(
+    2,
+    120.00,
+    110.00,
+    40.00
+),
+(
+    3,
+    240.00,
+    230.00,
+    75.00
+),
+(
+    4,
+    200.00,
+    190.00,
+    65.00
+);
 
 -- =========================================
 -- INSERTS: Parceiro
+-- Parceiros alinhados com soluções acessíveis
 -- =========================================
+
 INSERT INTO Parceiro (
     nome_empresa,
     email,
@@ -67,13 +172,39 @@ INSERT INTO Parceiro (
     cnpj,
     tipo_servico
 ) VALUES
-('Solar Energy Tech', 'contato@solartech.com', 'solar123', '12345678000199', 'Instalação Solar'),
-('Eco Power Solutions', 'vendas@ecopower.com', 'eco456', '98765432000188', 'Consultoria Energética'),
-('Green Sun Energia', 'suporte@greensun.com', 'green789', '45612378000177', 'Painéis Fotovoltaicos');
+(
+    'Cooperativa Solar Recife',
+    'contato@cooperativasolarrecife.com',
+    'coop123',
+    '12345678000199',
+    'Cooperativa Solar'
+),
+(
+    'Energia Compartilhada Nordeste',
+    'atendimento@energianordeste.com',
+    'energia456',
+    '98765432000188',
+    'Energia Solar Compartilhada'
+),
+(
+    'Banco Solar Popular',
+    'contato@bancosolarpopular.com',
+    'banco789',
+    '45612378000177',
+    'Financiamento Solar'
+),
+(
+    'Programa Luz Solar Social',
+    'programa@luzsolarsocial.org',
+    'social321',
+    '32198765000155',
+    'Programa Público'
+);
 
 -- =========================================
 -- INSERTS: Endereco_Parceiro
 -- =========================================
+
 INSERT INTO Endereco_Parceiro (
     id_parceiro,
     rua,
@@ -84,55 +215,124 @@ INSERT INTO Endereco_Parceiro (
     cidade,
     uf
 ) VALUES
-(1, 'Rua Energia Solar', '100', 'Galpão A', '13010000', 'Industrial', 'Campinas', 'SP'),
-(2, 'Av Sustentável', '2500', NULL, '30140071', 'Savassi', 'Belo Horizonte', 'MG'),
-(3, 'Rua Verde', '321', 'Sala 5', '90010000', 'Centro Histórico', 'Porto Alegre', 'RS');
+(
+    1,
+    'Rua da Sustentabilidade',
+    '100',
+    'Sala 01',
+    '50010000',
+    'Boa Vista',
+    'Recife',
+    'PE'
+),
+(
+    2,
+    'Avenida Energia Limpa',
+    '250',
+    NULL,
+    '51020000',
+    'Pina',
+    'Recife',
+    'PE'
+),
+(
+    3,
+    'Rua do Crédito Verde',
+    '300',
+    'Sala 12',
+    '52030000',
+    'Espinheiro',
+    'Recife',
+    'PE'
+),
+(
+    4,
+    'Avenida Social',
+    '50',
+    NULL,
+    '53040000',
+    'Centro',
+    'Olinda',
+    'PE'
+);
 
 -- =========================================
 -- INSERTS: Telefone_Parceiro
 -- =========================================
+
 INSERT INTO Telefone_Parceiro (
     id_parceiro,
     ddd,
     numero
 ) VALUES
-(1, '19', '999991111'),
-(2, '31', '988882222'),
-(3, '51', '977773333');
+(1, '81', '999555111'),
+(2, '81', '988555222'),
+(3, '81', '977555333'),
+(4, '81', '966555444');
 
 -- =========================================
 -- INSERTS: Solucao
+-- Catálogo coerente com democratização do acesso
 -- =========================================
+
 INSERT INTO Solucao (
     tipo_solucao,
     descricao_solucao,
     requisitos
 ) VALUES
 (
-    'Painel Solar Residencial',
-    'Sistema de geração de energia solar para residências.',
-    'Telhado disponível e boa incidência solar.'
+    'Cooperativa Solar',
+    'Modelo em que usuários participam de uma geração compartilhada de energia solar, sem precisar instalar painéis na própria residência.',
+    'Disponibilidade de cooperativa ativa na região e cadastro aprovado.'
 ),
 (
-    'Painel Solar Comercial',
-    'Sistema fotovoltaico para empresas de médio porte.',
-    'Área mínima de 100m² disponível.'
+    'Energia Solar Compartilhada',
+    'Modelo em que o usuário recebe créditos na conta de energia a partir de uma usina solar remota.',
+    'Residência conectada à rede elétrica e disponibilidade do serviço na região.'
 ),
 (
-    'Consultoria Energética',
-    'Análise de consumo e otimização energética.',
-    'Envio das últimas 12 faturas de energia.'
+    'Financiamento Solar',
+    'Alternativa para parcelar a instalação de um sistema solar residencial.',
+    'Análise de crédito, renda compatível e imóvel com estrutura adequada.'
+),
+(
+    'Programa Público ou Social',
+    'Iniciativa pública ou social voltada à ampliação do acesso à energia solar para populações de baixa renda.',
+    'Atender aos critérios socioeconômicos definidos pelo programa.'
 );
 
 -- =========================================
 -- INSERTS: Lead
+-- Conexões entre usuários, soluções e parceiros
 -- =========================================
+
 INSERT INTO Lead (
     id_parceiro,
     id_usuario,
     id_solucao,
     status
 ) VALUES
-(1, 1, 1, 'Novo'),
-(2, 2, 2, 'Em andamento'),
-(3, 3, 3, 'Fechado');
+(
+    1,
+    1,
+    1,
+    'Novo'
+),
+(
+    2,
+    2,
+    2,
+    'Em andamento'
+),
+(
+    3,
+    3,
+    3,
+    'Novo'
+),
+(
+    4,
+    4,
+    4,
+    'Fechado'
+);

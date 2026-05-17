@@ -110,6 +110,18 @@ CREATE TABLE Solucao (
 );
 
 -- =========================================
+-- TABELA: Parceiro_Solucao
+-- Relaciona parceiros às soluções que eles oferecem
+-- Representa uma relação N:N entre Parceiro e Solucao
+-- =========================================
+CREATE TABLE Parceiro_Solucao (
+    id_parceiro INT NOT NULL REFERENCES Parceiro(id_parceiro) ON DELETE CASCADE,
+    id_solucao INT NOT NULL REFERENCES Solucao(id_solucao) ON DELETE CASCADE,
+
+    PRIMARY KEY (id_parceiro, id_solucao)
+);
+
+-- =========================================
 -- TABELA: Lead
 -- Conecta Usuario, Parceiro e Solucao
 -- =========================================
@@ -123,3 +135,5 @@ CREATE TABLE Lead (
     ),
     data_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+

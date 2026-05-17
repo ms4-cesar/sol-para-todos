@@ -1,3 +1,9 @@
+from app.services.simulacao_service import (
+    criar_simulacao,
+    listar_simulacoes_usuario,
+    excluir_simulacao
+)
+
 from app.services.usuario_service import (
     buscar_usuario_por_id,
     atualizar_usuario,
@@ -87,7 +93,10 @@ def menu_usuario(usuario_logado):
         print("==============================")
         print("1 - Visualizar meu perfil")
         print("2 - Atualizar meu perfil")
-        print("3 - Excluir minha conta")
+        print("3 - Fazer simulação")
+        print("4 - Visualizar minhas simulações")
+        print("5 - Excluir simulação")
+        print("6 - Excluir minha conta")
         print("0 - Sair da conta")
 
         opcao = input("Escolha uma opção: ")
@@ -99,6 +108,15 @@ def menu_usuario(usuario_logado):
             editar_perfil(usuario_logado["id_usuario"])
 
         elif opcao == "3":
+            fazer_simulacao(usuario_logado["id_usuario"])
+
+        elif opcao == "4":
+            visualizar_simulacoes(usuario_logado["id_usuario"])
+
+        elif opcao == "5":
+            deletar_simulacao(usuario_logado["id_usuario"])
+
+        elif opcao == "6":
             conta_excluida = deletar_conta(usuario_logado["id_usuario"])
 
             if conta_excluida:
@@ -110,3 +128,96 @@ def menu_usuario(usuario_logado):
 
         else:
             print("Opção inválida.")
+
+
+def fazer_simulacao(id_usuario):
+    print("\n===== FAZER SIMULAÇÃO =====")
+
+    try:
+        consumo_mensal = float(input("Informe seu consumo mensal em kWh: "))
+        valor_fatura = float(input("Informe o valor médio da sua conta de luz: R$ "))
+
+        simulacao = criar_simulacao(
+            id_usuario,
+            consumo_mensal,
+            valor_fatura
+        )
+
+        print("\nSimulação realizada com sucesso.")
+        print(f"Consumo mensal informado: {simulacao['consumo_mensal']} kWh")
+        print(f"Valor atual da fatura: R$ {simulacao['valor_fatura']:.2f}")
+
+        print("\n===== COMPARAÇÃO DE SOLUÇÕES =====")
+        print(
+            f"{'Opção':<30} "
+            f"{'Custo estimado':<18} "
+            f"{'Economia':<15} "
+            f"{'Prazo':<15}"
+        )
+        print("-" * 85)
+
+        for item in simulacao["comparacao"]:
+            print(
+                f"{item['solucao']:<30} "
+                f"R$ {item['custo_estimado']:<15.2f} "
+                f"R$ {item['economia']:<12.2f} "
+                f"{item['prazo']:<15}"
+            )
+
+        print("\nObservações:")
+        for item in simulacao["comparacao"]:
+            print(f"- {item['solucao']}: {item['observacao']}")
+
+    except ValueError:
+        print("Erro: informe valores numéricos válidos.")
+
+    except Exception as erro:
+        print("Erro ao realizar simulação:")
+        print(erro)
+
+
+def visualizar_simulacoes(id_usuario):
+    simulacoes = listar_simulacoes_usuario(id_usuario)
+
+    print("\n===== MINHAS SIMULAÇÕES =====")
+
+    if not simulacoes:
+        print("Nenhuma simulação encontrada.")
+        return
+
+    for simulacao in simulacoes:
+        print("\n------------------------------")
+        print(f"ID da simulação: {simulacao[0]}")
+        print(f"Consumo mensal: {simulacao[1]} kWh")
+        print(f"Valor da fatura: R$ {simulacao[2]}")
+        print(f"Economia estimada geral: R$ {simulacao[3]}")
+        print(f"Data: {simulacao[4]}")
+
+
+def deletar_simulacao(id_usuario):
+    print("\n===== EXCLUIR SIMULAÇÃO =====")
+
+    visualizar_simulacoes(id_usuario)
+
+    try:
+        id_simulacao = int(input("\nInforme o ID da simulação que deseja excluir: "))
+
+        confirmacao = input("Tem certeza que deseja excluir esta simulação? (s/n): ")
+
+        if confirmacao.lower() != "s":
+            print("Operação cancelada.")
+            return
+
+        sucesso = excluir_simulacao(id_simulacao, id_usuario)
+
+        if sucesso:
+            print("Simulação excluída com sucesso.")
+        else:
+            print("Simulação não encontrada para este usuário.")
+
+    except ValueError:
+        print("Erro: informe um ID válido.")
+
+    except Exception as erro:
+        print("Erro ao excluir simulação:")
+        print(erro)

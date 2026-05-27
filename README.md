@@ -1,6 +1,6 @@
 # ☀️ Sol para Todos
 
-Projeto acadêmico desenvolvido na disciplina de Projetos 1 com foco na democratização do acesso à energia solar para populações de baixa renda e comunidades com difícil acesso à infraestrutura elétrica.
+Projeto acadêmico desenvolvido na disciplina de Banco de Dados com foco na democratização do acesso à energia solar para populações de baixa renda e comunidades com difícil acesso à infraestrutura elétrica.
 
 ---
 
@@ -13,7 +13,8 @@ O projeto busca conectar usuários a soluções acessíveis de energia solar, co
 - empresas parceiras.
 
 A plataforma permite:
-- cadastro de usuários e parceiros;
+- cadastro de usuários;
+- cadastro de parceiros;
 - simulações de economia energética;
 - recomendação de soluções;
 - geração de leads entre usuários e parceiros.
@@ -45,6 +46,9 @@ Apesar do crescimento da energia solar no Brasil, grande parte da população ai
 - CSS
 - JavaScript
 
+## Testes de API
+- Postman
+
 ## Versionamento
 - Git
 - GitHub
@@ -59,6 +63,7 @@ Apesar do crescimento da energia solar no Brasil, grande parte da população ai
 ├── /database
 ├── /backend
 ├── /frontend
+├── /postman
 └── /docs
 ```
 
@@ -69,31 +74,62 @@ Documentação completa da estrutura:
 
 # 📊 Funcionalidades
 
-- Cadastro de usuários
-- Cadastro de parceiros
-- Simulação de economia solar
-- Recomendação de soluções
-- Gestão de leads
-- Histórico de simulações
+- Cadastro de usuários;
+- Cadastro de parceiros;
+- Simulação de economia solar;
+- Recomendação de soluções;
+- Gestão de leads;
+- Histórico de simulações.
 
 ---
 
 # 🗂 Modelagem de Banco
 
 O projeto possui:
-- DER (Diagrama Entidade Relacionamento)
-- Modelo lógico
-- Cardinalidades
-- CRUD mapeado
-- Requisitos funcionais
+- DER (Diagrama Entidade Relacionamento);
+- Modelo lógico;
+- Cardinalidades;
+- CRUD mapeado;
+- Requisitos funcionais.
 
 Os documentos estão disponíveis na pasta `/docs`.
 
 ---
 
+# 🧪 Testes da API
+
+Os testes da API são realizados utilizando o Postman.
+
+A collection utilizada no projeto está disponível em:
+
+```text
+/postman
+```
+
+Os testes incluem:
+- CRUD de usuários;
+- CRUD de simulações;
+- CRUD de parceiros;
+- CRUD de leads;
+- validações de integração com PostgreSQL.
+
+---
+
+# 🔌 Fluxo da Aplicação
+
+```text
+Postman / Frontend
+↓
+Backend Flask (Python)
+↓
+PostgreSQL
+```
+
+---
+
 # ⚙️ Como Executar
 
-## 1. Clone o repositório
+## 1. Clonar o repositório
 
 ```bash
 git clone https://github.com/seu-repo/sol-para-todos.git
@@ -101,7 +137,15 @@ git clone https://github.com/seu-repo/sol-para-todos.git
 
 ---
 
-## 2. Instale as dependências
+## 2. Entrar na pasta do projeto
+
+```bash
+cd sol-para-todos
+```
+
+---
+
+## 3. Instalar as dependências
 
 ```bash
 pip install -r requirements.txt
@@ -109,9 +153,9 @@ pip install -r requirements.txt
 
 ---
 
-## 3. Configure o banco PostgreSQL
+## 4. Criar banco PostgreSQL
 
-Crie um banco chamado:
+Criar um banco chamado:
 
 ```text
 sol_para_todos
@@ -119,7 +163,7 @@ sol_para_todos
 
 ---
 
-## 4. Configure o `.env`
+## 5. Configurar o `.env`
 
 ```env
 DB_HOST=localhost
@@ -130,17 +174,21 @@ DB_PASSWORD=sua_senha
 
 ---
 
-## 5. Execute os scripts SQL
+## 6. Executar os scripts SQL
 
-Utilize os arquivos da pasta:
+Utilizar os arquivos da pasta:
 
 ```text
 /database
 ```
 
+Executar:
+- `schema.sql`
+- `inserts.sql`
+
 ---
 
-## 6. Inicie a aplicação
+## 7. Executar a aplicação
 
 ```bash
 python app.py
@@ -150,30 +198,26 @@ python app.py
 
 # 👥 Equipe
 
-Projeto desenvolvido por alunos da disciplina de Projetos 1.
+Projeto desenvolvido por alunos da disciplina de Projetos 1 da CESAR School.
 
-Bruno Soares
-E-mail: bjsm@cesar.school
+| Integrante | E-mail |
+|---|---|
+| Bruno Soares | bjsm@cesar.school |
+| Diógenes Agra | daa3@cesar.school |
+| Mariana da Silva | ms4@cesar.school |
+| Thiago Felipe | tfss3@cesar.school |
 
-Diógenes Agra 
-E-mail: daa3@cesar.school
-
-Mariana da Silva
-E-mail: ms4@cesar.school
-
-Thiago Felipe
-E-mail: tfss3@cesar.school
 ---
 
 # 📚 Contexto Acadêmico
 
 Este projeto foi desenvolvido utilizando conceitos de:
-- Design Thinking
-- Modelagem de Dados
-- CRUD
-- Elicitação de Requisitos
-- Prototipação
-- Banco de Dados Relacional
+- Design Thinking;
+- Modelagem de Dados;
+- CRUD;
+- Elicitação de Requisitos;
+- Prototipação;
+- Banco de Dados Relacional.
 
 ---
 

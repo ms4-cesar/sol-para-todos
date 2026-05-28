@@ -15,7 +15,7 @@ SELECT
     consumo_mensal,
     valor_fatura,
     economia_estimada,
-    data_simulacao
+    TO_CHAR(data_simulacao, 'DD/MM/YYYY "às" HH24:MI')
 FROM Simulacao
 WHERE id_usuario = %s
 ORDER BY data_simulacao DESC;

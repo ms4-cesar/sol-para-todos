@@ -1,6 +1,7 @@
 from auth import autenticar_usuario
 from services.usuario_service import criar_usuario
 from menus.menu_usuario import menu_usuario
+from menus.menu_solucao import menu_gerenciar_solucoes
 
 def cadastrar_usuario():
     print("\n===== CADASTRO DE USUÁRIO =====")
@@ -55,6 +56,7 @@ def menu_principal():
         print("1 - Login")
         print("2 - Cadastrar-se")
         print("3 - Cadastrar-se como parceiro")
+        print("4 - Gerenciar Soluções do Catálogo")
         print("0 - Sair")
 
         opcao = input("Escolha uma opção: ")
@@ -67,6 +69,9 @@ def menu_principal():
 
         elif opcao == "3":
             print("Cadastro de parceiro ainda será implementado.")
+
+        elif opcao == "4":
+            menu_gerenciar_solucoes()
 
         elif opcao == "0":
             print("Encerrando o sistema.")

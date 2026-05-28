@@ -1,6 +1,6 @@
-from app.auth import autenticar_usuario
-from app.services.usuario_service import criar_usuario
-from app.menus.menu_usuario import menu_usuario
+from auth import autenticar_usuario
+from services.usuario_service import criar_usuario
+from menus.menu_usuario import menu_usuario
 
 def cadastrar_usuario():
     print("\n===== CADASTRO DE USUÁRIO =====")

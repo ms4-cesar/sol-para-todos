@@ -1,10 +1,10 @@
-from app.services.simulacao_service import (
+from services.simulacao_service import (
     criar_simulacao,
     listar_simulacoes_usuario,
     excluir_simulacao
 )
 
-from app.services.usuario_service import (
+from services.usuario_service import (
     buscar_usuario_por_id,
     atualizar_usuario,
     excluir_usuario

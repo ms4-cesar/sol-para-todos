@@ -1,5 +1,5 @@
-from app.db import get_connection
-from app.sql.simulacao_sql import (
+from db import get_connection
+from sql.simulacao_sql import (
     INSERT_SIMULACAO,
     SELECT_SIMULACOES_POR_USUARIO,
     DELETE_SIMULACAO

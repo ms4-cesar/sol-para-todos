@@ -1,5 +1,5 @@
 import bcrypt
-from app.services.usuario_service import buscar_usuario_por_email
+from services.usuario_service import buscar_usuario_por_email
 
 def autenticar_usuario(email, senha):
     usuario = buscar_usuario_por_email(email)

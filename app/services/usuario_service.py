@@ -1,6 +1,6 @@
 import bcrypt
-from app.db import get_connection
-from app.sql.usuario_sql import (
+from db import get_connection
+from sql.usuario_sql import (
     INSERT_USUARIO,
     SELECT_USUARIO_POR_EMAIL,
     SELECT_USUARIO_POR_ID,

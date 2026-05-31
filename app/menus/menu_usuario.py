@@ -3,6 +3,7 @@ from services.simulacao_service import (
     listar_simulacoes_usuario,
     excluir_simulacao
 )
+from services.lead_service import criar_lead
 
 from services.usuario_service import (
     buscar_usuario_por_id,
@@ -149,6 +150,7 @@ def fazer_simulacao(id_usuario):
 
         print("\n===== COMPARAÇÃO DE SOLUÇÕES =====")
         print(
+            f"{'Id':<10} "
             f"{'Opção':<30} "
             f"{'Custo estimado':<18} "
             f"{'Economia':<15} "
@@ -158,6 +160,7 @@ def fazer_simulacao(id_usuario):
 
         for item in simulacao["comparacao"]:
             print(
+                f"{item['id']:<10} "
                 f"{item['solucao']:<30} "
                 f"R$ {item['custo_estimado']:<15.2f} "
                 f"R$ {item['economia']:<12.2f} "
@@ -167,6 +170,27 @@ def fazer_simulacao(id_usuario):
         print("\nObservações:")
         for item in simulacao["comparacao"]:
             print(f"- {item['solucao']}: {item['observacao']}")
+
+        print("\n===== OPÇÔES DISPONÍVEIS =====")
+        print(
+            f"{'Opções':<10} "
+            f"{'Solução':<30} "
+        )
+        for item in simulacao["comparacao"]:
+            print(
+                f"{item['id']:<10} "
+                f"{item['solucao']:<30} "
+            )
+        print(
+                f"{"0":<10} "
+                f"{"Voltar":<30} "
+            )
+
+        resposta = int(input("Qual opção você escolhe?"))
+        if resposta != 0:
+            criar_lead(id_usuario, resposta)
+        else:
+            return
 
     except ValueError:
         print("Erro: informe valores numéricos válidos.")

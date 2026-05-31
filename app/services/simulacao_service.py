@@ -14,6 +14,7 @@ def comparar_solucoes(valor_fatura):
 
     return [
         {
+            "id": 1,
             "solucao": "Cooperativa Solar",
             "percentual": 0.35,
             "economia": valor_fatura * 0.35,
@@ -22,6 +23,7 @@ def comparar_solucoes(valor_fatura):
             "observacao": "Não exige instalação própria."
         },
         {
+            "id": 2,
             "solucao": "Energia Solar Compartilhada",
             "percentual": 0.30,
             "economia": valor_fatura * 0.30,
@@ -30,6 +32,7 @@ def comparar_solucoes(valor_fatura):
             "observacao": "Depende da disponibilidade na região."
         },
         {
+            "id": 3,
             "solucao": "Financiamento Solar",
             "percentual": 0.10,
             "economia": valor_fatura * 0.10,
@@ -38,6 +41,7 @@ def comparar_solucoes(valor_fatura):
             "observacao": "Economia inicial menor por causa das parcelas."
         },
         {
+            "id": 4,
             "solucao": "Programa Público ou Social",
             "percentual": 0.50,
             "economia": valor_fatura * 0.50,

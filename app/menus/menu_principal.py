@@ -1,7 +1,11 @@
 from auth import autenticar_usuario
 from services.usuario_service import criar_usuario
 from menus.menu_usuario import menu_usuario
-from menus.menu_solucao import menu_gerenciar_solucoes
+from menus.menu_parceiro import menu_parceiro
+from services.parceiro_service import (
+    autenticar_parceiro,
+    criar_parceiro
+)
 
 def cadastrar_usuario():
     print("\n===== CADASTRO DE USUÁRIO =====")
@@ -31,6 +35,30 @@ def cadastrar_usuario():
         print("Erro ao cadastrar usuário:")
         print(erro)
 
+def cadastrar_parceiro():
+    print("\n===== CADASTRO DE EMPRESA PARCEIRA =====")
+
+    nome_empresa = input("Nome da empresa: ")
+    email = input("Email: ")
+    senha = input("Senha: ")
+    cnpj = input("CNPJ (somente números): ")
+    tipo_servico = input("Tipo de serviço prestado: ")
+    
+    try:
+        id_parceiro = criar_parceiro(
+            nome_empresa,
+            email,
+            senha,
+            cnpj,
+            tipo_servico
+        )
+
+        print(f"Empresa parceira cadastrada com sucesso. ID: {id_parceiro}")
+
+    except Exception as erro:
+        print("Erro ao cadastrar parceiro:")
+        print(erro)
+
 
 def login():
     print("\n===== LOGIN =====")
@@ -47,6 +75,21 @@ def login():
     print(f"Login realizado com sucesso. Bem-vindo(a), {usuario['nome']}!")
     menu_usuario(usuario)
 
+def login_parceiro():
+    print("\n===== LOGIN DE EMPRESA PARCEIRA =====")
+
+    email = input("E-mail: ")
+    senha = input("Senha: ")
+
+    parceiro = autenticar_parceiro(email, senha)
+
+    if parceiro is None:
+        print("E-mail ou senha inválidos.")
+        return
+
+    print(f"Login realizado com sucesso. Bem-vindo(a), {parceiro['nome_empresa']}!")
+    menu_parceiro(parceiro)
+
 
 def menu_principal():
     while True:
@@ -56,7 +99,7 @@ def menu_principal():
         print("1 - Login")
         print("2 - Cadastrar-se")
         print("3 - Cadastrar-se como parceiro")
-        print("4 - Gerenciar Soluções do Catálogo")
+        print("4 - Login de parceiro")
         print("0 - Sair")
 
         opcao = input("Escolha uma opção: ")
@@ -68,10 +111,10 @@ def menu_principal():
             cadastrar_usuario()
 
         elif opcao == "3":
-            print("Cadastro de parceiro ainda será implementado.")
+            cadastrar_parceiro()
 
         elif opcao == "4":
-            menu_gerenciar_solucoes()
+            login_parceiro()
 
         elif opcao == "0":
             print("Encerrando o sistema.")

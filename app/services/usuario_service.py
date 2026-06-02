@@ -5,10 +5,31 @@ from app.sql.usuario_sql import (
     SELECT_USUARIO_POR_EMAIL,
     SELECT_USUARIO_POR_ID,
     UPDATE_USUARIO,
-    DELETE_USUARIO
+    DELETE_USUARIO,
+    INSERT_ENDERECO_USUARIO,
+    INSERT_TELEFONE_USUARIO,
+    SELECT_ENDERECO_USUARIO,
+    SELECT_TELEFONES_USUARIO
 )
 
-def criar_usuario(nome, sobrenome, email, senha, cpf, renda, tipo_moradia):
+def criar_usuario(
+    nome,
+    sobrenome,
+    email,
+    senha,
+    cpf,
+    renda,
+    tipo_moradia,
+    rua,
+    numero,
+    complemento,
+    cep,
+    bairro,
+    cidade,
+    uf,
+    ddd,
+    telefone
+):
     senha_hash = bcrypt.hashpw(
         senha.encode("utf-8"),
         bcrypt.gensalt()
@@ -24,6 +45,30 @@ def criar_usuario(nome, sobrenome, email, senha, cpf, renda, tipo_moradia):
         )
 
         id_usuario = cursor.fetchone()[0]
+
+        cursor.execute(
+            INSERT_ENDERECO_USUARIO,
+            (
+                id_usuario,
+                rua,
+                numero,
+                complemento,
+                cep,
+                bairro,
+                cidade,
+                uf
+            )
+        )
+
+        cursor.execute(
+            INSERT_TELEFONE_USUARIO,
+            (
+                id_usuario,
+                ddd,
+                telefone
+            )
+        )
+
         conn.commit()
 
         return id_usuario
@@ -35,7 +80,6 @@ def criar_usuario(nome, sobrenome, email, senha, cpf, renda, tipo_moradia):
     finally:
         cursor.close()
         conn.close()
-
 
 def buscar_usuario_por_email(email):
     conn = get_connection()
@@ -57,6 +101,32 @@ def buscar_usuario_por_id(id_usuario):
     try:
         cursor.execute(SELECT_USUARIO_POR_ID, (id_usuario,))
         return cursor.fetchone()
+
+    finally:
+        cursor.close()
+        conn.close()
+
+
+def buscar_endereco_usuario(id_usuario):
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    try:
+        cursor.execute(SELECT_ENDERECO_USUARIO, (id_usuario,))
+        return cursor.fetchone()
+
+    finally:
+        cursor.close()
+        conn.close()
+
+
+def listar_telefones_usuario(id_usuario):
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    try:
+        cursor.execute(SELECT_TELEFONES_USUARIO, (id_usuario,))
+        return cursor.fetchall()
 
     finally:
         cursor.close()

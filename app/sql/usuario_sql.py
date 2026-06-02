@@ -53,3 +53,48 @@ DELETE_USUARIO = """
 DELETE FROM Usuario
 WHERE id_usuario = %s;
 """
+
+INSERT_ENDERECO_USUARIO = """
+INSERT INTO Endereco_Usuario (
+    id_usuario,
+    rua,
+    numero,
+    complemento,
+    cep,
+    bairro,
+    cidade,
+    uf
+)
+VALUES (%s, %s, %s, %s, %s, %s, %s, %s);
+"""
+
+INSERT_TELEFONE_USUARIO = """
+INSERT INTO Telefone_Usuario (
+    id_usuario,
+    ddd,
+    numero
+)
+VALUES (%s, %s, %s);
+"""
+
+SELECT_ENDERECO_USUARIO = """
+SELECT
+    rua,
+    numero,
+    complemento,
+    cep,
+    bairro,
+    cidade,
+    uf
+FROM Endereco_Usuario
+WHERE id_usuario = %s;
+"""
+
+SELECT_TELEFONES_USUARIO = """
+SELECT
+    ddd,
+    numero
+FROM Telefone_Usuario
+WHERE id_usuario = %s
+ORDER BY id_telefone;
+"""

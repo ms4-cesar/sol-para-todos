@@ -1,18 +1,18 @@
-from app.menus.opcoes import escolher_tipo_moradia
-from app.menus.validacoes import solicitar_renda_opcional
-from app.services.lead_service import (
+from menus.opcoes import escolher_tipo_moradia
+from menus.validacoes import solicitar_renda_opcional
+from services.lead_service import (
     criar_lead,
     listar_leads_usuario,
     cancelar_lead_usuario
 )
 
-from app.services.simulacao_service import (
+from services.simulacao_service import (
     criar_simulacao,
     listar_simulacoes_usuario,
     excluir_simulacao
 )
 
-from app.services.usuario_service import (
+from services.usuario_service import (
     buscar_usuario_por_id,
     atualizar_usuario,
     excluir_usuario,
@@ -20,7 +20,7 @@ from app.services.usuario_service import (
     listar_telefones_usuario
 )
 
-from app.services.solucao_service import (
+from services.solucao_service import (
     listar_solucoes,
     buscar_solucao_por_id,
     listar_parceiros_por_solucao_e_usuario

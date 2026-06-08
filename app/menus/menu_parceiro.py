@@ -1,4 +1,4 @@
-from app.services.parceiro_service import (
+from services.parceiro_service import (
     buscar_parceiro_por_id,
     listar_enderecos_parceiro,
     listar_telefones_parceiro,
@@ -6,13 +6,13 @@ from app.services.parceiro_service import (
     excluir_parceiro
 )
 
-from app.services.lead_service import (
+from services.lead_service import (
     listar_leads_parceiro,
     atualizar_status_lead,
     cancelar_lead_parceiro
 )
 
-from app.menus.opcoes import escolher_tipo_servico
+from menus.opcoes import escolher_tipo_servico
 
 
 def visualizar_perfil_parceiro(id_parceiro):

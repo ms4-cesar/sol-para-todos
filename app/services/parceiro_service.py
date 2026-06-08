@@ -1,6 +1,6 @@
 import bcrypt
-from app.db import get_connection
-from app.sql.parceiro_sql import (
+from db import get_connection
+from sql.parceiro_sql import (
     INSERT_PARCEIRO,
     INSERT_ENDERECO_PARCEIRO,
     INSERT_TELEFONE_PARCEIRO,

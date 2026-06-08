@@ -1,5 +1,5 @@
-from app.db import get_connection
-from app.sql.lead_sql import (
+from db import get_connection
+from sql.lead_sql import (
     INSERT_LEAD,
     SELECT_LEADS_POR_USUARIO,
     SELECT_LEADS_POR_PARCEIRO,

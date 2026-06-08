@@ -1,5 +1,5 @@
-from app.db import get_connection
-from app.sql.solucao_sql import (
+from db import get_connection
+from sql.solucao_sql import (
     SELECT_SOLUCOES,
     SELECT_SOLUCAO_POR_ID,
     SELECT_ENDERECO_USUARIO,

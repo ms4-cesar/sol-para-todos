@@ -1,4 +1,4 @@
-from app.menus.ui import cabecalho
+from menus.ui import cabecalho
 
 
 def escolher_tipo_moradia():

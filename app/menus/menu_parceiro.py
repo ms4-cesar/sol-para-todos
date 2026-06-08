@@ -12,17 +12,23 @@ from services.lead_service import (
     cancelar_lead_parceiro
 )
 
+<<<<<<< HEAD
 from menus.opcoes import escolher_tipo_servico
+=======
+from app.menus.opcoes import escolher_tipo_servico
+from app.menus.ui import cabecalho, separador
+>>>>>>> origin/main
 
 
 def visualizar_perfil_parceiro(id_parceiro):
     parceiro = buscar_parceiro_por_id(id_parceiro)
 
     if parceiro is None:
-        print("Parceiro não encontrado.")
+        print("\n❌ Parceiro não encontrado.")
         return
 
-    print("\n===== PERFIL DO PARCEIRO =====")
+    cabecalho("PERFIL DO PARCEIRO", "🏢")
+
     print(f"Empresa: {parceiro[1]}")
     print(f"E-mail: {parceiro[2]}")
     print(f"CNPJ: {parceiro[3]}")
@@ -30,12 +36,13 @@ def visualizar_perfil_parceiro(id_parceiro):
 
     enderecos = listar_enderecos_parceiro(id_parceiro)
 
-    print("\nEndereços:")
+    cabecalho("ENDEREÇOS", "📍")
+
     if not enderecos:
         print("Nenhum endereço cadastrado.")
     else:
         for endereco in enderecos:
-            print("------------------------------")
+            separador()
             print(f"Rua: {endereco[1]}, {endereco[2]}")
             print(f"Complemento: {endereco[3]}")
             print(f"CEP: {endereco[4]}")
@@ -44,7 +51,8 @@ def visualizar_perfil_parceiro(id_parceiro):
 
     telefones = listar_telefones_parceiro(id_parceiro)
 
-    print("\nTelefones:")
+    cabecalho("TELEFONES", "📞")
+
     if not telefones:
         print("Nenhum telefone cadastrado.")
     else:
@@ -56,15 +64,15 @@ def editar_perfil_parceiro(id_parceiro):
     parceiro = buscar_parceiro_por_id(id_parceiro)
 
     if parceiro is None:
-        print("Parceiro não encontrado.")
+        print("\n❌ Parceiro não encontrado.")
         return
 
-    print("\n===== EDITAR PERFIL DO PARCEIRO =====")
+    cabecalho("EDITAR PERFIL DO PARCEIRO", "✏️")
 
     print(f"Nome atual da empresa: {parceiro[1]}")
     novo_nome = input("Novo nome da empresa (pressione Enter para manter): ")
 
-    print(f"Tipo de serviço atual: {parceiro[4]}")
+    print(f"\nTipo de serviço atual: {parceiro[4]}")
     alterar_servico = input("Deseja alterar o tipo de serviço? (s/n): ")
 
     if alterar_servico.strip().lower() == "s":
@@ -82,86 +90,44 @@ def editar_perfil_parceiro(id_parceiro):
             tipo_servico
         )
 
-        print("Perfil do parceiro atualizado com sucesso.")
+        print("\n✅ Perfil do parceiro atualizado com sucesso.")
 
     except Exception as erro:
-        print("Erro ao atualizar parceiro:")
+        print("\n❌ Erro ao atualizar parceiro:")
         print(erro)
 
 
 def deletar_perfil_parceiro(id_parceiro):
+    cabecalho("EXCLUIR PERFIL DO PARCEIRO", "⚠️")
+
     confirmacao = input("Tem certeza que deseja excluir o perfil da empresa? (s/n): ")
 
     if confirmacao.strip().lower() != "s":
-        print("Operação cancelada.")
+        print("\nOperação cancelada.")
         return False
 
     try:
         excluir_parceiro(id_parceiro)
-        print("Perfil do parceiro excluído com sucesso.")
+        print("\n✅ Perfil do parceiro excluído com sucesso.")
         return True
 
     except Exception as erro:
-        print("Erro ao excluir parceiro:")
+        print("\n❌ Erro ao excluir parceiro:")
         print(erro)
         return False
-
-
-def menu_parceiro(parceiro_logado):
-    while True:
-        print("\n==============================")
-        print("        MENU DO PARCEIRO")
-        print("==============================")
-        print("1 - Visualizar perfil da empresa")
-        print("2 - Atualizar perfil da empresa")
-        print("3 - Visualizar leads recebidos")
-        print("4 - Atualizar status de um lead")
-        print("5 - Cancelar lead")
-        print("6 - Excluir perfil da empresa")
-        print("0 - Sair da conta")
-
-        opcao = input("Escolha uma opção: ")
-
-        if opcao == "1":
-            visualizar_perfil_parceiro(parceiro_logado["id_parceiro"])
-
-        elif opcao == "2":
-            editar_perfil_parceiro(parceiro_logado["id_parceiro"])
-
-        elif opcao == "3":
-            visualizar_leads_recebidos(parceiro_logado["id_parceiro"])
-
-        elif opcao == "4":
-            atualizar_status_lead_parceiro(parceiro_logado["id_parceiro"])
-
-        elif opcao == "5":
-            cancelar_lead_parceiro(parceiro_logado["id_parceiro"])
-
-        elif opcao == "6":
-            perfil_excluido = deletar_perfil_parceiro(parceiro_logado["id_parceiro"])
-
-            if perfil_excluido:
-                break
-
-        elif opcao == "0":
-            print("Saindo da conta.")
-            break
-
-        else:
-            print("Opção inválida.")
 
 
 def visualizar_leads_recebidos(id_parceiro):
     leads = listar_leads_parceiro(id_parceiro)
 
-    print("\n===== LEADS RECEBIDOS =====")
+    cabecalho("LEADS RECEBIDOS", "🤝")
 
     if not leads:
         print("Nenhum lead recebido.")
         return
 
     for lead in leads:
-        print("\n------------------------------")
+        separador()
         print(f"ID do lead: {lead[0]}")
         print(f"Cliente: {lead[1]} {lead[2]}")
         print(f"E-mail do cliente: {lead[3]}")
@@ -172,13 +138,14 @@ def visualizar_leads_recebidos(id_parceiro):
 
 def escolher_status_lead():
     while True:
-        print("\nNovo status do lead:")
+        cabecalho("NOVO STATUS DO LEAD", "📌")
+
         print("1 - Novo")
         print("2 - Em andamento")
         print("3 - Fechado")
         print("4 - Cancelado")
 
-        opcao = input("Escolha uma opção: ")
+        opcao = input("\nEscolha uma opção: ")
 
         if opcao == "1":
             return "Novo"
@@ -189,11 +156,11 @@ def escolher_status_lead():
         elif opcao == "4":
             return "Cancelado"
         else:
-            print("Opção inválida. Escolha uma opção de 1 a 4.")
+            print("\n❌ Opção inválida. Escolha uma opção de 1 a 4.")
 
 
 def atualizar_status_lead_parceiro(id_parceiro):
-    print("\n===== ATUALIZAR STATUS DO LEAD =====")
+    cabecalho("ATUALIZAR STATUS DO LEAD", "🔄")
 
     leads = listar_leads_parceiro(id_parceiro)
 
@@ -209,7 +176,7 @@ def atualizar_status_lead_parceiro(id_parceiro):
         ids_leads_disponiveis = [lead[0] for lead in leads]
 
         if id_lead not in ids_leads_disponiveis:
-            print("Lead inválido. Escolha apenas um lead listado.")
+            print("\n❌ Lead inválido. Escolha apenas um lead listado.")
             return
 
         novo_status = escolher_status_lead()
@@ -221,20 +188,20 @@ def atualizar_status_lead_parceiro(id_parceiro):
         )
 
         if sucesso:
-            print("Status do lead atualizado com sucesso.")
+            print("\n✅ Status do lead atualizado com sucesso.")
         else:
-            print("Lead não encontrado para este parceiro.")
+            print("\n❌ Lead não encontrado para este parceiro.")
 
     except ValueError:
-        print("Erro: informe um ID válido.")
+        print("\n❌ Erro: informe um ID válido.")
 
     except Exception as erro:
-        print("Erro ao atualizar status do lead:")
+        print("\n❌ Erro ao atualizar status do lead:")
         print(erro)
 
 
-def cancelar_lead_parceiro(id_parceiro):
-    print("\n===== CANCELAR LEAD =====")
+def cancelar_lead_do_parceiro(id_parceiro):
+    cabecalho("CANCELAR LEAD", "⚠️")
 
     leads = listar_leads_parceiro(id_parceiro)
 
@@ -250,25 +217,68 @@ def cancelar_lead_parceiro(id_parceiro):
         ids_leads_disponiveis = [lead[0] for lead in leads]
 
         if id_lead not in ids_leads_disponiveis:
-            print("Lead inválido. Escolha apenas um lead listado.")
+            print("\n❌ Lead inválido. Escolha apenas um lead listado.")
             return
 
         confirmacao = input("Tem certeza que deseja cancelar este lead? (s/n): ")
 
         if confirmacao.strip().lower() != "s":
-            print("Operação cancelada.")
+            print("\nOperação cancelada.")
             return
 
         sucesso = cancelar_lead_parceiro(id_lead, id_parceiro)
 
         if sucesso:
-            print("Lead cancelado com sucesso.")
+            print("\n✅ Lead cancelado com sucesso.")
         else:
-            print("Lead não encontrado para este parceiro.")
+            print("\n❌ Lead não encontrado para este parceiro.")
 
     except ValueError:
-        print("Erro: informe um ID válido.")
+        print("\n❌ Erro: informe um ID válido.")
 
     except Exception as erro:
-        print("Erro ao cancelar lead:")
+        print("\n❌ Erro ao cancelar lead:")
         print(erro)
+
+
+def menu_parceiro(parceiro_logado):
+    while True:
+        cabecalho("MENU DO PARCEIRO", "🏢")
+
+        print("1 - Visualizar perfil da empresa")
+        print("2 - Atualizar perfil da empresa")
+        print("3 - Visualizar leads recebidos")
+        print("4 - Atualizar status de um lead")
+        print("5 - Cancelar lead")
+        print("6 - Excluir perfil da empresa")
+        print("0 - Sair da conta")
+
+        opcao = input("\nEscolha uma opção: ")
+
+        if opcao == "1":
+            visualizar_perfil_parceiro(parceiro_logado["id_parceiro"])
+
+        elif opcao == "2":
+            editar_perfil_parceiro(parceiro_logado["id_parceiro"])
+
+        elif opcao == "3":
+            visualizar_leads_recebidos(parceiro_logado["id_parceiro"])
+
+        elif opcao == "4":
+            atualizar_status_lead_parceiro(parceiro_logado["id_parceiro"])
+
+        elif opcao == "5":
+            cancelar_lead_do_parceiro(parceiro_logado["id_parceiro"])
+
+        elif opcao == "6":
+            perfil_excluido = deletar_perfil_parceiro(parceiro_logado["id_parceiro"])
+
+            if perfil_excluido:
+                break
+
+        elif opcao == "0":
+            print("\nSaindo da conta.")
+            break
+
+        else:
+            print("\n❌ Opção inválida.")

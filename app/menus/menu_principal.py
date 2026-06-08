@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from auth import autenticar_usuario
 from services.usuario_service import criar_usuario
 from menus.menu_usuario import menu_usuario
@@ -7,6 +8,16 @@ from services.parceiro_service import criar_parceiro
 from menus.menu_parceiro import menu_parceiro
 from menus.opcoes import escolher_tipo_moradia, escolher_tipo_servico
 from menus.validacoes import (
+=======
+from app.menus.ui import cabecalho_sistema, cabecalho
+from app.auth import autenticar_login
+from app.services.usuario_service import criar_usuario
+from app.services.parceiro_service import criar_parceiro
+from app.menus.menu_usuario import menu_usuario
+from app.menus.menu_parceiro import menu_parceiro
+from app.menus.opcoes import escolher_tipo_moradia, escolher_tipo_servico
+from app.menus.validacoes import (
+>>>>>>> origin/main
     solicitar_texto_obrigatorio,
     solicitar_email,
     solicitar_senha,
@@ -20,8 +31,9 @@ from menus.validacoes import (
     solicitar_texto_opcional
 )
 
+
 def cadastrar_usuario():
-    print("\n===== CADASTRO DE USUÁRIO =====")
+    cabecalho("CADASTRO DE USUÁRIO", "👤")
 
     nome = solicitar_texto_obrigatorio("Nome: ", tamanho_maximo=100)
     sobrenome = solicitar_texto_obrigatorio("Sobrenome: ", tamanho_maximo=100)
@@ -31,7 +43,7 @@ def cadastrar_usuario():
     renda = solicitar_renda()
     tipo_moradia = escolher_tipo_moradia()
 
-    print("\n===== ENDEREÇO DO USUÁRIO =====")
+    cabecalho("ENDEREÇO DO USUÁRIO", "📍")
 
     rua = solicitar_texto_obrigatorio("Rua: ", tamanho_maximo=150)
     numero = solicitar_texto_obrigatorio("Número: ", tamanho_maximo=10)
@@ -46,7 +58,7 @@ def cadastrar_usuario():
     cidade = solicitar_texto_obrigatorio("Cidade: ", tamanho_maximo=100)
     uf = solicitar_uf()
 
-    print("\n===== TELEFONE DO USUÁRIO =====")
+    cabecalho("TELEFONE DO USUÁRIO", "📞")
 
     ddd = solicitar_ddd()
     telefone = solicitar_telefone()
@@ -71,63 +83,15 @@ def cadastrar_usuario():
             telefone
         )
 
-        print(f"Usuário cadastrado com sucesso. ID: {id_usuario}")
+        print(f"\n✅ Usuário cadastrado com sucesso. ID: {id_usuario}")
 
     except Exception as erro:
-        print("Erro ao cadastrar usuário:")
+        print("\n❌ Erro ao cadastrar usuário:")
         print(erro)
 
-def login():
-    print("\n===== LOGIN =====")
-
-    email = input("E-mail: ")
-    senha = input("Senha: ")
-
-    conta = autenticar_login(email, senha)
-
-    if conta is None:
-        print("E-mail ou senha inválidos.")
-        return
-
-    if conta["tipo"] == "usuario":
-        print(f"Login realizado com sucesso. Bem-vindo(a), {conta['nome']}!")
-        menu_usuario(conta)
-
-    elif conta["tipo"] == "parceiro":
-        print(f"Login realizado com sucesso. Bem-vindo(a), {conta['nome_empresa']}!")
-        menu_parceiro(conta)
-
-
-def menu_principal():
-    while True:
-        print("\n==============================")
-        print("        SOL PARA TODOS")
-        print("==============================")
-        print("1 - Login")
-        print("2 - Cadastrar-se como usuário")
-        print("3 - Cadastrar-se como parceiro")
-        print("0 - Sair")
-
-        opcao = input("Escolha uma opção: ")
-
-        if opcao == "1":
-            login()
-
-        elif opcao == "2":
-            cadastrar_usuario()
-
-        elif opcao == "3":
-            cadastrar_parceiro()
-
-        elif opcao == "0":
-            print("Encerrando o sistema.")
-            break
-
-        else:
-            print("Opção inválida.")
 
 def cadastrar_parceiro():
-    print("\n===== CADASTRO DE PARCEIRO =====")
+    cabecalho("CADASTRO DE PARCEIRO", "🏢")
 
     nome_empresa = solicitar_texto_obrigatorio(
         "Nome da empresa: ",
@@ -140,7 +104,7 @@ def cadastrar_parceiro():
 
     tipo_servico = escolher_tipo_servico()
 
-    print("\n===== ENDEREÇO DO PARCEIRO =====")
+    cabecalho("ENDEREÇO DO PARCEIRO", "📍")
 
     rua = solicitar_texto_obrigatorio(
         "Rua: ",
@@ -171,7 +135,7 @@ def cadastrar_parceiro():
 
     uf = solicitar_uf()
 
-    print("\n===== TELEFONE DO PARCEIRO =====")
+    cabecalho("TELEFONE DO PARCEIRO", "📞")
 
     ddd = solicitar_ddd()
     telefone = solicitar_telefone()
@@ -194,8 +158,57 @@ def cadastrar_parceiro():
             telefone
         )
 
-        print(f"Parceiro cadastrado com sucesso. ID: {id_parceiro}")
+        print(f"\n✅ Parceiro cadastrado com sucesso. ID: {id_parceiro}")
 
     except Exception as erro:
-        print("Erro ao cadastrar parceiro:")
+        print("\n❌ Erro ao cadastrar parceiro:")
         print(erro)
+
+
+def login():
+    cabecalho("LOGIN", "🔐")
+
+    email = input("E-mail: ")
+    senha = input("Senha: ")
+
+    conta = autenticar_login(email, senha)
+
+    if conta is None:
+        print("\n❌ E-mail ou senha inválidos.")
+        return
+
+    if conta["tipo"] == "usuario":
+        print(f"\n✅ Login realizado com sucesso. Bem-vindo(a), {conta['nome']}!")
+        menu_usuario(conta)
+
+    elif conta["tipo"] == "parceiro":
+        print(f"\n✅ Login realizado com sucesso. Bem-vindo(a), {conta['nome_empresa']}!")
+        menu_parceiro(conta)
+
+
+def menu_principal():
+    while True:
+        cabecalho_sistema()
+
+        print("1 - Login")
+        print("2 - Cadastrar-se como usuário")
+        print("3 - Cadastrar-se como parceiro")
+        print("0 - Sair")
+
+        opcao = input("\nEscolha uma opção: ")
+
+        if opcao == "1":
+            login()
+
+        elif opcao == "2":
+            cadastrar_usuario()
+
+        elif opcao == "3":
+            cadastrar_parceiro()
+
+        elif opcao == "0":
+            print("\nEncerrando o sistema.")
+            break
+
+        else:
+            print("\n❌ Opção inválida.")

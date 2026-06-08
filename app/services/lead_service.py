@@ -98,7 +98,11 @@ def cancelar_lead_usuario(id_lead, id_usuario):
     cursor = conn.cursor()
 
     try:
-        cursor.execute(CANCELAR_LEAD_USUARIO, (id_lead, id_usuario))
+        cursor.execute(
+            CANCELAR_LEAD_USUARIO,
+            (id_lead, id_usuario)
+        )
+
         conn.commit()
 
         return cursor.rowcount > 0
@@ -117,7 +121,11 @@ def cancelar_lead_parceiro(id_lead, id_parceiro):
     cursor = conn.cursor()
 
     try:
-        cursor.execute(CANCELAR_LEAD_PARCEIRO, (id_lead, id_parceiro))
+        cursor.execute(
+            CANCELAR_LEAD_PARCEIRO,
+            (id_lead, id_parceiro)
+        )
+
         conn.commit()
 
         return cursor.rowcount > 0

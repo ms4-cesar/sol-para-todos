@@ -1,12 +1,16 @@
+from app.menus.ui import cabecalho
+
+
 def escolher_tipo_moradia():
     while True:
-        print("\nTipo de moradia:")
+        cabecalho("TIPO DE MORADIA", "🏠")
+
         print("1 - Casa")
         print("2 - Apartamento")
         print("3 - Área rural")
         print("4 - Outro")
 
-        opcao = input("Escolha uma opção: ")
+        opcao = input("\nEscolha uma opção: ")
 
         if opcao == "1":
             return "Casa"
@@ -17,21 +21,19 @@ def escolher_tipo_moradia():
         elif opcao == "4":
             return "Outro"
         else:
-            print("Opção inválida. Escolha uma opção de 1 a 4.")
+            print("\n❌ Opção inválida. Escolha uma opção de 1 a 4.")
 
 
 def escolher_tipo_servico():
     while True:
-        print("\nTipo de serviço:")
+        cabecalho("TIPO DE SERVIÇO", "💡")
+
         print("1 - Cooperativa Solar")
         print("2 - Energia Solar Compartilhada")
         print("3 - Financiamento Solar")
-        print("4 - Programa Público")
-        print("5 - Instalação Solar")
-        print("6 - Consultoria Energética")
-        print("7 - Outro")
+        print("4 - Programa Público ou Social")
 
-        opcao = input("Escolha uma opção: ")
+        opcao = input("\nEscolha uma opção: ")
 
         if opcao == "1":
             return "Cooperativa Solar"
@@ -40,12 +42,6 @@ def escolher_tipo_servico():
         elif opcao == "3":
             return "Financiamento Solar"
         elif opcao == "4":
-            return "Programa Público"
-        elif opcao == "5":
-            return "Instalação Solar"
-        elif opcao == "6":
-            return "Consultoria Energética"
-        elif opcao == "7":
-            return "Outro"
+            return "Programa Público ou Social"
         else:
-            print("Opção inválida. Escolha uma opção de 1 a 7.")
+            print("\n❌ Opção inválida. Escolha uma opção de 1 a 4.")

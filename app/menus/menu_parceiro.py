@@ -12,12 +12,8 @@ from services.lead_service import (
     cancelar_lead_parceiro
 )
 
-<<<<<<< HEAD
-from menus.opcoes import escolher_tipo_servico
-=======
 from app.menus.opcoes import escolher_tipo_servico
 from app.menus.ui import cabecalho, separador
->>>>>>> origin/main
 
 
 def visualizar_perfil_parceiro(id_parceiro):

@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-from auth import autenticar_usuario
-from services.usuario_service import criar_usuario
-from menus.menu_usuario import menu_usuario
-from menus.opcoes import escolher_tipo_moradia
-from auth import autenticar_login
-from services.parceiro_service import criar_parceiro
-from menus.menu_parceiro import menu_parceiro
-from menus.opcoes import escolher_tipo_moradia, escolher_tipo_servico
-from menus.validacoes import (
-=======
 from app.menus.ui import cabecalho_sistema, cabecalho
 from app.auth import autenticar_login
 from app.services.usuario_service import criar_usuario
@@ -17,7 +6,6 @@ from app.menus.menu_usuario import menu_usuario
 from app.menus.menu_parceiro import menu_parceiro
 from app.menus.opcoes import escolher_tipo_moradia, escolher_tipo_servico
 from app.menus.validacoes import (
->>>>>>> origin/main
     solicitar_texto_obrigatorio,
     solicitar_email,
     solicitar_senha,

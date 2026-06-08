@@ -1,14 +1,8 @@
-<<<<<<< HEAD
-from menus.opcoes import escolher_tipo_moradia
-from menus.validacoes import solicitar_renda_opcional
-from services.lead_service import (
-=======
 from app.menus.ui import cabecalho, separador
 from app.menus.opcoes import escolher_tipo_moradia
 from app.menus.validacoes import solicitar_renda_opcional
 
 from app.services.lead_service import (
->>>>>>> origin/main
     criar_lead,
     listar_leads_usuario,
     cancelar_lead_usuario
